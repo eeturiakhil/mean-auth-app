@@ -824,6 +824,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       path: "profile",
       component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_7__["ProfileComponent"],
       canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]]
+    }, {
+      path: "**",
+      redirectTo: "",
+      pathMatch: "full"
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
