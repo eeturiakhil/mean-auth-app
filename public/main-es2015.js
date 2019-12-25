@@ -961,7 +961,8 @@ __webpack_require__.r(__webpack_exports__);
 
 class Globals {
     constructor() {
-        this.localApiUrl = "http://localhost:3000/users";
+        this.localApiUrl = "http://localhost:3000";
+        this.herokuApiUrl = "http://localhost:3000/users";
     }
 }
 
@@ -1040,10 +1041,12 @@ let AuthService = class AuthService {
         this.globals = globals;
     }
     registerUser(user) {
-        return this.http.post(`${this.globals.localApiUrl}/register`, user, this.getRequestHeaders());
+        // return this.http.post(`${this.globals.localApiUrl}/users/register`, user, this.getRequestHeaders());
+        return this.http.post(`users/register`, user, this.getRequestHeaders());
     }
     authenticateUser(user) {
-        return this.http.post(`${this.globals.localApiUrl}/authenticate`, user, this.getRequestHeaders());
+        // return this.http.post(`${this.globals.localApiUrl}/users/authenticate`, user, this.getRequestHeaders());
+        return this.http.post(`users/authenticate`, user, this.getRequestHeaders());
     }
     storeUserData(token, user) {
         localStorage.setItem("id_token", token);
@@ -1058,7 +1061,8 @@ let AuthService = class AuthService {
             Authorization: this.authToken
         });
         let options = { headers: headers };
-        return this.http.get(`${this.globals.localApiUrl}/profile`, options);
+        // return this.http.get(`${this.globals.localApiUrl}/users/profile`, options);
+        return this.http.get(`users/profile`, options);
     }
     loadToken() {
         const token = localStorage.getItem("id_token");

@@ -1840,7 +1840,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var Globals = function Globals() {
       _classCallCheck(this, Globals);
 
-      this.localApiUrl = "http://localhost:3000/users";
+      this.localApiUrl = "http://localhost:3000";
+      this.herokuApiUrl = "http://localhost:3000/users";
     };
     /***/
 
@@ -1996,12 +1997,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthService, [{
         key: "registerUser",
         value: function registerUser(user) {
-          return this.http.post("".concat(this.globals.localApiUrl, "/register"), user, this.getRequestHeaders());
+          // return this.http.post(`${this.globals.localApiUrl}/users/register`, user, this.getRequestHeaders());
+          return this.http.post("users/register", user, this.getRequestHeaders());
         }
       }, {
         key: "authenticateUser",
         value: function authenticateUser(user) {
-          return this.http.post("".concat(this.globals.localApiUrl, "/authenticate"), user, this.getRequestHeaders());
+          // return this.http.post(`${this.globals.localApiUrl}/users/authenticate`, user, this.getRequestHeaders());
+          return this.http.post("users/authenticate", user, this.getRequestHeaders());
         }
       }, {
         key: "storeUserData",
@@ -2021,8 +2024,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
           var options = {
             headers: headers
-          };
-          return this.http.get("".concat(this.globals.localApiUrl, "/profile"), options);
+          }; // return this.http.get(`${this.globals.localApiUrl}/users/profile`, options);
+
+          return this.http.get("users/profile", options);
         }
       }, {
         key: "loadToken",

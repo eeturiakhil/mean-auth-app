@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "../interfaces/user";
 import { Globals } from "../globals";
 import { tokenNotExpired } from "angular2-jwt";
-import { Observable, Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -15,19 +14,13 @@ export class AuthService {
   constructor(private http: HttpClient, private globals: Globals) {}
 
   registerUser(user: User) {
-    return this.http.post(
-      `${this.globals.localApiUrl}/register`,
-      user,
-      this.getRequestHeaders()
-    );
+    // return this.http.post(`${this.globals.localApiUrl}/users/register`, user, this.getRequestHeaders());
+    return this.http.post(`users/register`, user, this.getRequestHeaders());
   }
 
   authenticateUser(user) {
-    return this.http.post(
-      `${this.globals.localApiUrl}/authenticate`,
-      user,
-      this.getRequestHeaders()
-    );
+    // return this.http.post(`${this.globals.localApiUrl}/users/authenticate`, user, this.getRequestHeaders());
+    return this.http.post(`users/authenticate`, user, this.getRequestHeaders());
   }
 
   storeUserData(token, user) {
@@ -44,7 +37,8 @@ export class AuthService {
       Authorization: this.authToken
     });
     let options = { headers: headers };
-    return this.http.get(`${this.globals.localApiUrl}/profile`, options);
+    // return this.http.get(`${this.globals.localApiUrl}/users/profile`, options);
+    return this.http.get(`users/profile`, options);
   }
 
   loadToken() {
