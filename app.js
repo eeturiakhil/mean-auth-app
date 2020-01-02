@@ -1,10 +1,14 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const expressSession = require("express-session");
+const morgan = require("morgan");
 const cors = require("cors");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const config = require("./config/database");
+const connectFlash = require("connect-flash");
 
 // Connect to Database
 mongoose.connect(config.database, {
@@ -24,11 +28,17 @@ mongoose.connection.on("error", err => {
 
 const app = express();
 
+app.use(morgan("dev"));
+app.use(cookieParser());
+app.use(
+  expressSession({ secret: "secret", saveUninitialized: true, resave: true })
+);
+
 const users = require("./routes/users");
 
 // Port Number
-// const port = 3000;
-const port = process.env.PORT || 8080;
+const port = 3000;
+// const port = process.env.PORT || 8080;
 
 // CORS Middleware
 app.use(cors());
@@ -43,10 +53,13 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Flash messages
+app.use(connectFlash());
+
 require("./config/passport")(passport);
 
 // Users route
-app.use("/users", users);
+app.use("/users", users)(app, passport);
 
 // Index route
 app.get("/", (req, res) => {

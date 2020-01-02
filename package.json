@@ -8,14 +8,19 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "*",
-    "mongoose": "*",
     "bcryptjs": "*",
-    "cors": "*",
-    "jsonwebtoken": "*",
     "body-parser": "*",
-    "passport": "*",
-    "passport-jwt": "*"
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.4",
+    "cors": "*",
+    "express": "*",
+    "express-session": "^1.17.0",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "*",
+    "passport-local": "^1.0.0"
   },
   "author": "Akhil Kumar E",
   "license": "ISC"

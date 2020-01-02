@@ -13,7 +13,8 @@ router.post("/register", (req, res, next) => {
     last_name: req.body.last_name,
     email: req.body.email,
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    actual_password: req.body.password
   });
 
   User.addUser(newUser, (err, user) => {
@@ -37,7 +38,7 @@ router.post("/authenticate", (req, res, next) => {
       return res.json({ success: false, msg: "User not found" });
     }
 
-    console.log("User: " + JSON.stringify(user));
+    // console.log("User: " + JSON.stringify(user));
     User.comparePassword(password, user.password, (err, isMatch) => {
       if (err) throw err;
       if (isMatch) {
