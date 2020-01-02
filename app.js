@@ -59,7 +59,7 @@ app.use(connectFlash());
 require("./config/passport")(passport);
 
 // Users route
-app.use("/users", users)(app, passport);
+app.use("/users", users);
 
 // Index route
 app.get("/", (req, res) => {
