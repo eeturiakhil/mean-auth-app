@@ -962,7 +962,7 @@ __webpack_require__.r(__webpack_exports__);
 class Globals {
     constructor() {
         this.localApiUrl = "http://localhost:3000";
-        this.herokuApiUrl = "http://localhost:3000/users";
+        // readonly herokuApiUrl: string = "http://localhost:3000/users";
     }
 }
 

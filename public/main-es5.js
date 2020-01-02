@@ -1840,8 +1840,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var Globals = function Globals() {
       _classCallCheck(this, Globals);
 
-      this.localApiUrl = "http://localhost:3000";
-      this.herokuApiUrl = "http://localhost:3000/users";
+      this.localApiUrl = "http://localhost:3000"; // readonly herokuApiUrl: string = "http://localhost:3000/users";
     };
     /***/
 
