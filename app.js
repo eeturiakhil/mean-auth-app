@@ -16,7 +16,7 @@ mongoose.connect(config.database, {
   useUnifiedTopology: true
 });
 
-// On Connection
+// On Connection Testing
 mongoose.connection.on("connected", () => {
   console.log(`Connected to Database ${config.database}`);
 });
